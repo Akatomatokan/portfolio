@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吉本裕晴のポートフォリオ</title>
+    <style>
+        /* リセットとベーススタイル */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        /* ヘッダー */
+        header {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(37, 99, 235, 0.8) 100%);
+            z-index: 1;
+        }
+        
+        .hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .hero .subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* ナビゲーション */
+        nav {
+            background-color: #2563eb;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* メインコンテンツ */
+        main {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        section h2 {
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 0.8rem;
+            margin-bottom: 2rem;
+            color: #1e3a8a;
+            font-size: 1.8rem;
+            position: relative;
+        }
+        
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 60px;
+            height: 3px;
+            background-color: #1e3a8a;
+        }
+        
+        /* 自己紹介 */
+        .about-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .profile-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #e5e7eb;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        
+        .info-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        
+        .info-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .info-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #2563eb;
+        }
+        
+        .info-list strong {
+            color: #1e3a8a;
+            margin-right: 0.5rem;
+        }
+        
+        /* 趣味とスキル */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+        }
+        
+        .card h3 span {
+            margin-right: 0.8rem;
+            color: #2563eb;
+            font-size: 1.5rem;
+        }
+        
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1rem;
+        }
+        
+        .tag {
+            background-color: #e0e7ff;
+            color: #1e40af;
+            border-radius: 20px;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* スキル */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+        
+        .skill-item {
+            background-color: #dbeafe;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #1e3a8a;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .skill-icon {
+            font-size: 1.5rem;
+            color: #2563eb;
+        }
+        
+        /* プロジェクト */
+        .project-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin-bottom: 2rem;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background-color: #f3f4f6;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 2rem;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 1rem;
+            color: #1e3a8a;
+            font-size: 1.5rem;
+        }
+        
+        .project-content p {
+            margin-bottom: 1.5rem;
+            color: #4b5563;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tag-item {
+            background-color: #eff6ff;
+            color: #2563eb;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .project-link {
+            display: inline-block;
+            background-color: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .project-link:hover {
+            background-color: #1e40af;
+        }
+        
+        /* お問い合わせ */
+        .contact-section {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            border-radius: 8px;
+        }
+        
+        .contact-section h2 {
+            color: white;
+            border-bottom: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-section h2::after {
+            display: none;
+        }
+        
+        .contact-info {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .contact-button {
+            display: inline-block;
+            background-color: white;
+            color: #1e3a8a;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* フッター */
+        footer {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-link {
+            display: inline-block;
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0.3rem;
+            }
+            
+            .about-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .info-list li {
+                text-align: left;
+            }
+            
+            section h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            section h2 {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-content">
+            <div class="hero">
+                <h1>吉本 裕晴</h1>
+                <p>Hiroharu Yoshimoto</p>
+                <div class="subtitle">大阪公立大学工業高等専門学校 4年 知能情報コース</div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- ナビゲーション -->
+    <nav>
+        <ul>
+            <li><a href="#about">自己紹介</a></li>
+            <li><a href="#interests">趣味</a></li>
+            <li><a href="#skills">スキル</a></li>
+            <li><a href="#projects">制作物</a></li>
+            
+        </ul>
+    </nav>
+    
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- 自己紹介 -->
+        <section id="about">
+            <h2>自己紹介</h2>
+            <div class="about-container">
+               
+                <div class="about-text">
+                    <p>はじめまして、吉本裕晴と申します。大阪公立大学工業高等専門学校の知能情報コースに所属する4年生です。</p>
+                    <p>プログラミングを通じて、日常の課題を解決する新しいアプリケーションの開発に興味を持っています。特にSwiftやC#を用いたアプリケーション開発に興味があります。</p>
+                    <p>高専での学びを活かして、技術力だけでなく、創造性と問題解決能力を伸ばし、新しい価値を創造できるエンジニアを目指しています。</p>
+                    
+                    <ul class="info-list">
+                        <li><strong>学校:</strong> 大阪公立大学工業高等専門学校</li>
+                        <li><strong>学年・コース:</strong> 4年 知能情報コース</li>
+                        <li><strong>専攻分野:</strong> プログラミング</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 趣味 -->
+        <section id="interests">
+            <h2>趣味と好きなもの</h2>
+            <div class="grid-container">
+                <!-- 趣味カード：読書 -->
+                <div class="card">
+                    <h3><span>📚</span>読書</h3>
+                    <p>文学作品を読むことで、新しい世界や考え方に触れるのが好きです。特にファンタジーや哲学的な作品を好んでいます。</p>
+                    <div class="tag-list">
+                        <span class="tag">小説</span>
+                        <span class="tag">ファンタジー</span>
+                        <span class="tag">古典文学</span>
+                    </div>
+                </div>
+                
+                <!-- 趣味カード：絵画鑑賞 -->
+                <div class="card">
+                    <h3><span>🖼️</span>絵画鑑賞</h3>
+                    <p>美術館やギャラリーを訪れて様々な芸術作品に触れるのが好きです。</p>
+                    <div class="tag-list">
+                        <span class="tag">美術館巡り</span>
+                        <span class="tag">現代アート</span>
+                        <span class="tag">クラシック</span>
+                    </div>
+                </div>
+                
+                <!-- 趣味カード：ゲーム -->
+                <div class="card">
+                    <h3><span>🎮</span>ゲーム</h3>
+                    <p>ストーリー重視のノベルゲームや、格闘ゲームが好きです。ゲームのメカニクスやインターフェースの設計にも関心があります。</p>
+                    <div class="tag-list">
+                        <span class="tag">ノベルゲーム</span>
+                        <span class="tag">格闘ゲーム</span>
+                
+                    </div>
+                </div>
+                
+                <!-- 好きな作品 -->
+                <div class="card">
+                    <h3><span>📘</span>好きな作品</h3>
+                    <p>オスカー・ワイルドの「幸福の王子」とディカーニカ近郷夜話は私のお気に入りの作品です。物語の世界観や登場人物の心理描写に魅了されています。</p>
+                    <div class="tag-list">
+                        <span class="tag">幸福の王子</span>
+                        <span class="tag">ディカーニカ近郷夜話</span>
+                        <span class="tag">文学</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- スキル -->
+        <section id="skills">
+            <h2>スキル</h2>
+            <div class="skills-list">
+                <div class="skill-item">
+                    <span class="skill-icon">📱</span>
+                    Swift
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">💻</span>
+                    C#
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🖥️</span>
+                    アプリケーション開発
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🎮</span>
+                    ゲーム開発
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🧩</span>
+                    問題解決
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🔄</span>
+                    アルゴリズム
+                </div>
+            </div>
+        </section>
+        
+        <!-- 制作物 -->
+        <section id="projects">
+            <h2>制作物</h2>
+            <div class="project-card">
+                
+                <div class="project-content">
+                    <h3>天気予報スロットゲーム</h3>
+                    <p>天気予報を題材にしたユニークなスロットゲームです。図柄を天気で表しており、それぞれの天気に対応したボーナスを用意しています。</p>
+                    
+                    <div class="tags">
+                        <span class="tag-item">Swift</span>
+                        <span class="tag-item">C#</span>
+                        <span class="tag-item">ゲーム開発</span>
+                        <span class="tag-item">API連携</span>
+                        <span class="tag-item">UI/UXデザイン</span>
+                    </div>
+                    
+                    <p>このプロジェクトでは、天気予報APIとの連携、ユーザーインターフェースの実装などを行いました。ユーザーが楽しみながら天気情報に触れることができるアプリケーションを目指しました。</p>
+                    
+                    <a href="#" class="project-link">詳細を見る</a>
+                </div>
+            </div>
+        </section>
+        
+       
+    </main>
+    
+    <!-- フッター -->
+    <footer>
+        <div class="social-links">
+            <a href="#" class="social-link">T</a>
+            <a href="#" class="social-link">G</a>
+            <a href="#" class="social-link">L</a>
+        </div>
+        <p>&copy; 2025 吉本裕晴 All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
